@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import News
-from .forms import CategoryForm
+from .forms import CategoryForm, NewsForm
 
 
 def home_view(request):
@@ -23,3 +23,15 @@ def category_form_view(request):
         form = CategoryForm()  # Cria um formulário vazio para GET
 
     return render(request, 'categories_form.html', {'form': form})
+
+
+def news_form_view(request):
+    if request.method == 'POST':
+        form = NewsForm(request.POST, request.FILES)  # Para lidar com arquivos
+        if form.is_valid():
+            form.save()
+            return redirect('home-page')  # Redireciona para a página principal
+    else:
+        form = NewsForm()  # Formulário vazio para o método GET
+
+    return render(request, 'news_form.html', {'form': form})
