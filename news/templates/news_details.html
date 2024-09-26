@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Detalhes da Notícia</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <ul class="header-links">
+            <li><a href="{% url 'home-page' %}">Home</a></li>
+        </ul>
+    </header>
+
+    <main>
+        <article class="news-details">
+            <h1 class="news-title">{{ news_item.title }}</h1>
+            <img src="{% static 'image.jpg' %}" alt="Imagem da notícia">
+            <p class="news-content">{{ news_item.content }}</p>
+            <div class="news-meta">
+                <span class="news-author">Autor: {{ news_item.author }}</span>
+                <span class="news-date">{{ news_item.created_at|date:"d/m/Y" }}</span>
+                <div class="news-categories">
+                    {% for category in news_item.categories.all %}
+                        <span class="news-categories">{{ category.name }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </article>
+    </main>
+</body>
+</html>
