@@ -1,5 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from .models import News
+from rest_framework import viewsets
+from news.serializers import CategorySerializer
+from .models import Category, News
 from .forms import CategoryForm, NewsForm
 
 
@@ -35,3 +37,8 @@ def news_form_view(request):
         form = NewsForm()  # Formulário vazio para o método GET
 
     return render(request, 'news_form.html', {'form': form})
+
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()  # Todas as categorias
+    serializer_class = CategorySerializer
