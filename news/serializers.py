@@ -14,14 +14,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = ["id", "name", "email", "role"]
 
 
-class PlaylistSerializer(serializers.HyperlinkedModelSerializer):
+class NewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
-        fields = [
-            "id", "title",
-            "content",
-            "author",
-            "created_at",
-            "image",
-            "categories",
-            ]
+        fields = ['id', 'title', 'content', 'author', 'created_at', 'image', 'categories']

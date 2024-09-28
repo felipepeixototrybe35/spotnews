@@ -1,4 +1,3 @@
-# import datetime
 from django.db import models
 from django.core.exceptions import ValidationError
 
@@ -40,9 +39,3 @@ class News(models.Model):
 
     def __str__(self):
         return self.title
-
-    # def clean(self):
-    #     if len(self.title.split()) < 2:
-    #         raise ValidationError(
-    #             'O título deve conter pelo menos 2 palavras.'
-    #             )
